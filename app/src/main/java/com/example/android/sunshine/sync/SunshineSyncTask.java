@@ -19,6 +19,7 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.text.format.DateUtils;
+import android.util.Log;
 
 import com.example.android.sunshine.data.SunshinePreferences;
 import com.example.android.sunshine.data.WeatherContract;
@@ -29,6 +30,8 @@ import com.example.android.sunshine.utilities.OpenWeatherJsonUtils;
 import java.net.URL;
 
 public class SunshineSyncTask {
+
+    private static final String TAG = SunshineSyncTask.class.getSimpleName();
 
     /**
      * Performs the network request for updated weather, parses the JSON from that request, and
@@ -50,6 +53,7 @@ public class SunshineSyncTask {
 
             /* Use the URL to retrieve the JSON */
             String jsonWeatherResponse = NetworkUtils.getResponseFromHttpUrl(weatherRequestUrl);
+            Log.v(TAG, "JSON Payload was" + jsonWeatherResponse);
 
             /* Parse the JSON into a list of weather values */
             ContentValues[] weatherValues = OpenWeatherJsonUtils

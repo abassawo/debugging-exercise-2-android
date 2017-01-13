@@ -71,7 +71,9 @@ public class SunshineSyncUtils {
                 /*
                  * We want Sunshine's weather data to stay up to date, so we tell this Job to recur.
                  */
-                .setRecurring(true)
+
+                //Modified setRecurring to false to prevent repeats.
+                .setRecurring(false)
                 /*
                  * setLifetime sets how long this job should persist. The options are to keep the
                  * Job "forever" or to have it die the next time the device boots up.
@@ -89,6 +91,7 @@ public class SunshineSyncUtils {
                 .build();
 
         /* Schedule the Job with the dispatcher */
+        //I Began debugging from this breakpoint.
         dispatcher.schedule(syncSunshineJob);
     }
     /**
@@ -107,6 +110,7 @@ public class SunshineSyncUtils {
         if (sInitialized) return;
 
         sInitialized = true;
+
 
         /*
          * This method call triggers Sunshine to create its task to synchronize weather data

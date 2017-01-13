@@ -98,6 +98,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             // we've changed the location
             // Wipe out any potential PlacePicker latlng values so that we can use this text entry.
             SunshinePreferences.resetLocationCoordinates(activity);
+
+            /*This call could potentially cause a repeat too, Better to do a check for which units, or zip
+            when initializing service. Going to commet this out for now*/
             SunshineSyncUtils.startImmediateSync(activity);
         } else if (key.equals(getString(R.string.pref_units_key))) {
             // units have changed. update lists of weather entries accordingly
